@@ -15,6 +15,8 @@ class MoneySpec extends Specification {
         expect:
         new Dollar(5) == new Dollar(5)
         new Dollar(5) != new Dollar(6)
+        new Yen(5) == new Yen(5)
+        new Yen(5) != new Yen(6)
     }
 
     def 日本円の掛け算() {

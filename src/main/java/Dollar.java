@@ -1,5 +1,4 @@
-class Dollar {
-    private int amount;
+class Dollar extends Money {
 
     Dollar(int amount) {
         this.amount = amount;
@@ -10,8 +9,4 @@ class Dollar {
         return new Dollar(amount * multiplier);
     }
 
-    @Override
-    public boolean equals(Object object) {
-        return amount == ((Dollar) object).amount;
-    }
 }
