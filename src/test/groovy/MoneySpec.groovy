@@ -16,4 +16,10 @@ class MoneySpec extends Specification {
         then:
         product.amount == 15
     }
+
+    def testEquality() {
+        expect:
+        new Dollar(5) == new Dollar(5)
+        new Dollar(5) != new Dollar(6)
+    }
 }
