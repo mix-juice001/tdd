@@ -1,13 +1,14 @@
 class Yen extends Money {
 
-    Yen(int amount) {
+
+    Yen(int amount, String currency) {
         this.amount = amount;
+        this.currency = currency;
     }
 
 
     Money times(int multiplier) {
-        return new Yen(amount * multiplier);
+        return Money.yen(amount * multiplier);
     }
-
 
 }

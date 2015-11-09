@@ -26,4 +26,11 @@ class MoneySpec extends Specification {
         five.times(2) == Money.yen(10)
         five.times(3) == Money.yen(15)
     }
+
+    def testCurrency() {
+        expect:
+        "USD" == Money.dollar(1).currency();
+        "JPY" == Money.yen(1).currency();
+
+    }
 }
