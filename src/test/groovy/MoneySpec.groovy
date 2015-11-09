@@ -33,4 +33,9 @@ class MoneySpec extends Specification {
         "JPY" == Money.yen(1).currency();
 
     }
+
+    def YenとDollarのEquality() {
+        expect:
+        new Money(10, "YEN") == new Yen(10, "YEN")
+    }
 }

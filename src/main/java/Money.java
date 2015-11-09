@@ -1,24 +1,41 @@
-abstract class Money {
+class Money {
     protected int amount;
     protected String currency;
+
+    Money() {}
+
+    Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency =currency;
+    }
 
     public static Money yen(int amount) {
         return new Yen(amount, "JPY");
     }
 
-    abstract Money times(int multiplier);
-
     public static Money dollar(int amount) {
         return new Dollar(amount, "USD");
+    }
+
+    Money times(int multiplier) {
+        return new Dollar(amount * multiplier, currency);
     }
 
     @Override
     public boolean equals(Object object) {
         return amount == ((Money) object).amount
-                && this.getClass().equals(object.getClass());
+                && this.currency.equals(((Money) object).currency);
     }
 
     String currency() {
         return currency;
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + amount +
+                ", currency='" + currency + '\'' +
+                '}';
     }
 }
