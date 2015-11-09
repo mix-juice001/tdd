@@ -4,26 +4,26 @@ class MoneySpec extends Specification {
 
     def 金額の掛け算() {
         setup:
-        Dollar five = new Dollar(5)
+        Money five = Money.dollar(5)
 
         expect:
-        five.times(2) == new Dollar(10)
-        five.times(3) == new Dollar(15)
+        five.times(2) == Money.dollar(10)
+        five.times(3) == Money.dollar(15)
     }
 
     def testEquality() {
         expect:
-        new Dollar(5) == new Dollar(5)
-        new Dollar(5) != new Dollar(6)
-        new Yen(5) == new Yen(5)
-        new Yen(5) != new Yen(6)
-        new Dollar(5) != new Yen(5)
+        Money.dollar(5) == Money.dollar(5)
+        Money.dollar(5) != Money.dollar(6)
+        Money.yen(5) == Money.yen(5)
+        Money.yen(5) != Money.yen(6)
+        Money.dollar(5) != Money.yen(5)
     }
 
     def 日本円の掛け算() {
-        def five = new Yen(5)
+        def five = Money.yen(5)
         expect:
-        five.times(2) == new Yen(10)
-        five.times(3) == new Yen(15)
+        five.times(2) == Money.yen(10)
+        five.times(3) == Money.yen(15)
     }
 }

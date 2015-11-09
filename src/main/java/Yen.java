@@ -5,7 +5,7 @@ class Yen extends Money {
     }
 
 
-    Yen times(int multiplier) {
+    Money times(int multiplier) {
         return new Yen(amount * multiplier);
     }
 
