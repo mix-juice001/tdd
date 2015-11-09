@@ -15,8 +15,6 @@ class MoneySpec extends Specification {
         expect:
         Money.dollar(5) == Money.dollar(5)
         Money.dollar(5) != Money.dollar(6)
-        Money.yen(5) == Money.yen(5)
-        Money.yen(5) != Money.yen(6)
         Money.dollar(5) != Money.yen(5)
     }
 
@@ -34,8 +32,4 @@ class MoneySpec extends Specification {
 
     }
 
-    def YenとDollarのEquality() {
-        expect:
-        new Money(10, "YEN") == new Yen(10, "YEN")
-    }
 }

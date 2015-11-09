@@ -2,23 +2,21 @@ class Money {
     protected int amount;
     protected String currency;
 
-    Money() {}
-
     Money(int amount, String currency) {
         this.amount = amount;
         this.currency =currency;
     }
 
     public static Money yen(int amount) {
-        return new Yen(amount, "JPY");
+        return new Money(amount, "JPY");
     }
 
     public static Money dollar(int amount) {
-        return new Dollar(amount, "USD");
+        return new Money(amount, "USD");
     }
 
     Money times(int multiplier) {
-        return new Dollar(amount * multiplier, currency);
+        return new Money(amount * multiplier, currency);
     }
 
     @Override
