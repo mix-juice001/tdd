@@ -87,4 +87,12 @@ class MoneySpec extends Specification {
         expect:
         bank.rate("USD", "USD") == 1
     }
+
+    def mixedAddition() {
+        when:
+        def bank = new Bank()
+        bank.addRate("JPY", "USD", 2)
+        then:
+        bank.reduce(Money.dollar(5).plus(Money.yen(10)), "USD") == Money.dollar(10)
+    }
 }
