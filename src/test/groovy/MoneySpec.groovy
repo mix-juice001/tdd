@@ -66,4 +66,10 @@ class MoneySpec extends Specification {
         five == sum.addend
     }
 
+    def reduceMoney() {
+        def five = Money.dollar(5)
+        def bank = new Bank()
+        expect:
+        bank.reduce(five, "USD") == five
+    }
 }
