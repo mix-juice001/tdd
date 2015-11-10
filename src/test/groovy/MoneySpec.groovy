@@ -48,9 +48,12 @@ class MoneySpec extends Specification {
 
     def シンプルな足し算() {
         when:
-        def sum = Money.dollar(5).plus(Money.dollar(5))
+        def five = Money.dollar(5)
+        def sum = five.plus(five)
+        def bank = new Bank()
+        def reduced = bank.reduce(sum, "USD")
         then:
-        sum == Money.dollar(10)
+        reduced == Money.dollar(10)
     }
 
 }
