@@ -108,4 +108,15 @@ class MoneySpec extends Specification {
         then:
         bank.reduce(sum, "USD") == Money.dollar(15)
     }
+
+    def sumTimes() {
+        when:
+        def fiveBucks = Money.dollar(5)
+        def tenYens = Money.yen(10)
+        def bank = new Bank()
+        bank.addRate("JPY", "USD", 2)
+
+        then:
+        bank.reduce(new Sum(fiveBucks, tenYens).times(2), "USD") == Money.dollar(20)
+    }
 }
