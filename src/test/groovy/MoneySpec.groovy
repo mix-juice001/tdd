@@ -72,4 +72,19 @@ class MoneySpec extends Specification {
         expect:
         bank.reduce(five, "USD") == five
     }
+
+    def 異なる通貨のreduce() {
+        when:
+        def bank = new Bank()
+        bank.addRate("JPY", "USD", 2)
+        def twoYen = Money.yen(2)
+        then:
+        bank.reduce(twoYen, "USD") == Money.dollar(1)
+    }
+
+    def 同じ通貨のrate換算() {
+        def bank = new Bank()
+        expect:
+        bank.rate("USD", "USD") == 1
+    }
 }
