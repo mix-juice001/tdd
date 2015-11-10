@@ -56,4 +56,14 @@ class MoneySpec extends Specification {
         reduced == Money.dollar(10)
     }
 
+    def Sumを返却する足し算() {
+        when:
+        def five = Money.dollar(5)
+        def result = five.plus(five)
+        def sum = (Sum) result
+        then:
+        five == sum.augend
+        five == sum.addend
+    }
+
 }
