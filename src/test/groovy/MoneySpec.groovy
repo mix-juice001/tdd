@@ -90,9 +90,11 @@ class MoneySpec extends Specification {
 
     def mixedAddition() {
         when:
+        Expression fibeBucks = Money.dollar(5)
+        Expression tenYens = Money.yen(10)
         def bank = new Bank()
         bank.addRate("JPY", "USD", 2)
         then:
-        bank.reduce(Money.dollar(5).plus(Money.yen(10)), "USD") == Money.dollar(10)
+        bank.reduce(fibeBucks.plus(tenYens), "USD") == Money.dollar(10)
     }
 }
