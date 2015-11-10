@@ -21,6 +21,8 @@ class Money {
 
     @Override
     public boolean equals(Object object) {
+        if (object == null) return false;
+        if (!object.getClass().equals(this.getClass())) return false;
         return amount == ((Money) object).amount
                 && this.currency.equals(((Money) object).currency);
     }
