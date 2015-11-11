@@ -10,7 +10,7 @@ class Bank {
     }
 
     int rate(CurrencyType from, CurrencyType to) {
-        if (from.equals(to)) return 1;
+        if (from == to) return 1;
         return rates.get(new Pair(from, to));
     }
 
