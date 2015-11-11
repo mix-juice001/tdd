@@ -28,9 +28,6 @@ class Money implements Expression {
                 && this.currency.equals(((Money) object).currency);
     }
 
-    String currency() {
-        return currency;
-    }
 
     @Override
     public String toString() {
