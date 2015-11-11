@@ -1,0 +1,4 @@
+enum CurrencyType {
+    USD,
+    JPY
+}

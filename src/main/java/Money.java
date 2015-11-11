@@ -1,18 +1,18 @@
 class Money implements Expression {
     protected int amount;
-    protected String currency;
+    protected CurrencyType currency;
 
-    Money(int amount, String currency) {
+    Money(int amount, CurrencyType currency) {
         this.amount = amount;
         this.currency =currency;
     }
 
     public static Money yen(int amount) {
-        return new Money(amount, "JPY");
+        return new Money(amount, CurrencyType.JPY);
     }
 
     public static Money dollar(int amount) {
-        return new Money(amount, "USD");
+        return new Money(amount, CurrencyType.USD);
     }
 
     @Override
@@ -44,7 +44,7 @@ class Money implements Expression {
     }
 
     @Override
-    public Money reduce(Bank bank, String to) {
+    public Money reduce(Bank bank, CurrencyType to) {
         int rate = bank.rate(currency, to);
         return new Money(amount / rate, to);
     }

@@ -5,24 +5,24 @@ class Bank {
 
     private Map<Pair, Integer> rates = new HashMap<>();
 
-    Expression reduce(Expression source, String to) {
+    Expression reduce(Expression source, CurrencyType to) {
         return source.reduce(this, to);
     }
 
-    int rate(String from, String to) {
+    int rate(CurrencyType from, CurrencyType to) {
         if (from.equals(to)) return 1;
         return rates.get(new Pair(from, to));
     }
 
-    public void addRate(String from, String to, int rate) {
+    public void addRate(CurrencyType from, CurrencyType to, int rate) {
         rates.put(new Pair(from, to), rate);
     }
 
     private class Pair {
-        private String from;
-        private String to;
+        private CurrencyType from;
+        private CurrencyType to;
 
-        public Pair(String from, String to) {
+        public Pair(CurrencyType from, CurrencyType to) {
             this.from = from;
             this.to = to;
         }

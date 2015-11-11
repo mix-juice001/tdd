@@ -30,8 +30,8 @@ class MoneySpec extends Specification {
 
     def testCurrency() {
         expect:
-        "USD" == Money.dollar(1).currency;
-        "JPY" == Money.yen(1).currency;
+        CurrencyType.USD == Money.dollar(1).currency;
+        CurrencyType.JPY == Money.yen(1).currency;
     }
 
     def 掛け算() {
@@ -51,7 +51,7 @@ class MoneySpec extends Specification {
         def five = Money.dollar(5)
         def sum = five.plus(five)
         def bank = new Bank()
-        def reduced = bank.reduce(sum, "USD")
+        def reduced = bank.reduce(sum, CurrencyType.USD)
         then:
         reduced == Money.dollar(10)
     }
@@ -70,22 +70,22 @@ class MoneySpec extends Specification {
         def five = Money.dollar(5)
         def bank = new Bank()
         expect:
-        bank.reduce(five, "USD") == five
+        bank.reduce(five, CurrencyType.USD) == five
     }
 
     def 異なる通貨のreduce() {
         when:
         def bank = new Bank()
-        bank.addRate("JPY", "USD", 2)
+        bank.addRate(CurrencyType.JPY, CurrencyType.USD, 2)
         def twoYen = Money.yen(2)
         then:
-        bank.reduce(twoYen, "USD") == Money.dollar(1)
+        bank.reduce(twoYen, CurrencyType.USD) == Money.dollar(1)
     }
 
     def 同じ通貨のrate換算() {
         def bank = new Bank()
         expect:
-        bank.rate("USD", "USD") == 1
+        bank.rate(CurrencyType.USD, CurrencyType.USD) == 1
     }
 
     def mixedAddition() {
@@ -93,9 +93,9 @@ class MoneySpec extends Specification {
         Expression fibeBucks = Money.dollar(5)
         Expression tenYens = Money.yen(10)
         def bank = new Bank()
-        bank.addRate("JPY", "USD", 2)
+        bank.addRate(CurrencyType.JPY, CurrencyType.USD, 2)
         then:
-        bank.reduce(fibeBucks.plus(tenYens), "USD") == Money.dollar(10)
+        bank.reduce(fibeBucks.plus(tenYens), CurrencyType.USD) == Money.dollar(10)
     }
 
     def SumPlusMoney() {
@@ -103,10 +103,10 @@ class MoneySpec extends Specification {
         def fiveBucks = Money.dollar(5)
         def tenYens = Money.yen(10)
         def bank = new Bank()
-        bank.addRate("JPY", "USD", 2)
+        bank.addRate(CurrencyType.JPY, CurrencyType.USD, 2)
         def sum = new Sum(fiveBucks, tenYens).plus(fiveBucks)
         then:
-        bank.reduce(sum, "USD") == Money.dollar(15)
+        bank.reduce(sum, CurrencyType.USD) == Money.dollar(15)
     }
 
     def sumTimes() {
@@ -114,10 +114,10 @@ class MoneySpec extends Specification {
         def fiveBucks = Money.dollar(5)
         def tenYens = Money.yen(10)
         def bank = new Bank()
-        bank.addRate("JPY", "USD", 2)
+        bank.addRate(CurrencyType.JPY, CurrencyType.USD, 2)
 
         then:
-        bank.reduce(new Sum(fiveBucks, tenYens).times(2), "USD") == Money.dollar(20)
+        bank.reduce(new Sum(fiveBucks, tenYens).times(2), CurrencyType.USD) == Money.dollar(20)
     }
 
 //    def sameCurrencyReturnsMoney() {
